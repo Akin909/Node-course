@@ -8,12 +8,17 @@ let getAll = () =>{
   console.log('getting all notes');
 };
 
-let remove = (note) => {
-  console.log('removing note');
+let getNote = (title) => {
+  console.log('Here is the title: ',title);
+};
+
+let removeNote = (title) => {
+ console.log(`Removing ${title}`)
 };
 
 module.exports  = {
   addNote,
   getAll,
-  remove,
+  getNote,
+  removeNote,
 };
