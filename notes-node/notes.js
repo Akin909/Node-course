@@ -7,7 +7,7 @@ let fetchNotes = () =>{
     let noteString = fs.readFileSync('notes-data.json');
     return JSON.parse(noteString);
   } catch (error){
-    return []
+    return [];
   }
 }
 
@@ -32,20 +32,35 @@ let addNote = (title, body) => {
 
 
 let getAll = () =>{
+  let notes = fetchNotes();
   console.log('getting all notes');
+  return notes;
 };
 
 let getNote = (title) => {
-  console.log('Here is the title: ',title);
+  let notes = fetchNotes();
+  console.log('fetching note..');
+  return notes.find((note)=>note.title === title);
 };
 
 let removeNote = (title) => {
- console.log(`Removing ${title}`)
+  let notes = fetchNotes();
+  let filteredNotes = notes.filter((note) => note.title !== title);
+  saveNotes(filteredNotes);
+  return notes.length !== filteredNotes.length;
 };
+
+let logNote = (note) => {
+  console.log(`Title: ${note.title}`)
+  console.log(`---`);
+  console.log(note.body);
+  console.log('===');
+}
 
 module.exports  = {
   addNote,
   getAll,
   getNote,
+  logNote,
   removeNote,
 };
