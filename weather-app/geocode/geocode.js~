@@ -1,5 +1,4 @@
 const request = require('request');
-const key ='15503e43cf3308e4388f9413a14906e9' 
 
 function geocodeAddress(address, callback) {
 	let encodedAddress = encodeURIComponent(`${
@@ -23,5 +22,6 @@ function geocodeAddress(address, callback) {
 	});
 }
 module.exports = {
+	getForecast,
 	geocodeAddress
 };
