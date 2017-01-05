@@ -22,6 +22,5 @@ function geocodeAddress(address, callback) {
 	});
 }
 module.exports = {
-	getForecast,
 	geocodeAddress
 };

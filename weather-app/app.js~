@@ -14,20 +14,18 @@ const argv = yargs.options({
 	.alias('help', 'h')
 	.argv;
 
-let latitude = 37.8267;
-let longitude = -122.4233;
 
-weather.getForecast(latitude, longitude, (errorMessage, results) => {
+geocode.geocodeAddress(argv.address, (errorMessage, results) => {
 	if (errorMessage) {
 		console.log(errorMessage);
 	} else {
-		console.log(JSON.stringify(results, undefined, 2));
-	}
-});
-geocode.geocodeAddress(argv.address, (errorMessage, weatherResults) => {
-	if (errorMessage) {
-		console.log(errorMessage);
-	} else {
-		console.log(JSON.stringify(weatheRresults, undefined, 2));
+		console.log(results.address);
+		weather.getForecast(results.Latitude, results.Longitude, (errorMessage, weatherResults) => {
+			if (errorMessage) {
+				console.log(errorMessage);
+			} else {
+				console.log(`It's currently ${weatherResults.temperature}. It feels like ${weatherResults.apparentTemperature}.`);
+			}
+		});
 	}
 });
